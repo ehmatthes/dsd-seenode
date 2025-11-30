@@ -2,22 +2,26 @@
 
 # seenode settings.
 import os
-import dj_database_url
+if os.environ.get("DATABASE_URL", ""):
+    import dj_database_url
 
-# Security settings
-SECRET_KEY = os.environ.get('SECRET_KEY')
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+    # Security settings
+    # SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = "f758ee6fa3842c83d1a4aae6b423d8c0"
+    # DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+    DEBUG = True
+    # ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+    ALLOWED_HOSTS = ["*"]
 
-# Database configuration
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-}
+    # Database configuration
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    }
 
-# Static files with WhiteNoise
-i = MIDDLEWARE.index("django.middleware.security.SecurityMiddleware")
-MIDDLEWARE.insert(i + 1, "whitenoise.middleware.WhiteNoiseMiddleware")
+    # Static files with WhiteNoise
+    i = MIDDLEWARE.index("django.middleware.security.SecurityMiddleware")
+    MIDDLEWARE.insert(i + 1, "whitenoise.middleware.WhiteNoiseMiddleware")
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
