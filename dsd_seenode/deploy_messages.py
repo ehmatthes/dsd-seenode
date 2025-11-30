@@ -65,11 +65,13 @@ def success_msg(log_output=""):
             - Set Build command to: ./build.sh
             - Set Start command to: gunicorn <project-name>.wsgi --bind 0.0.0.0:80
             - Set Port to: 80
-            - Add the following block to Environment variables.
-              ON_SEENODE=1
-              DEBUG=False
-              SECRET_KEY=<secret-key>
-              DATABASE_URL=<database-uri>
+            - Add the following block to Environment variables. Make sure to use
+              your own value for SECRET_KEY, and the database URI you copied earlier
+              from your dashboard.
+                ON_SEENODE=1
+                DEBUG=False
+                SECRET_KEY=<secret-key>
+                DATABASE_URL=<database-uri>
             - Click Continue
             - Choose a pricing tier, and click Start free trial, or Create instance.
               Your project should start to deploy automatically.
