@@ -1,10 +1,9 @@
 Changelog: dsd-<platformname>
 ===
 
-0.1 - Provisional support for deployments
----
+0.2 - Refining support for configuration-only deployments
 
-### (Unreleased)
+### 0.2.0
 
 #### External changes
 
@@ -15,6 +14,9 @@ Changelog: dsd-<platformname>
 #### Internal changes
 
 - N/A
+
+0.1 - Provisional support for deployments
+---
 
 ### 0.1.0
 
