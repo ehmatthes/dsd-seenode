@@ -10,8 +10,7 @@ if os.environ.get("ON_SEENODE", ""):
     SECRET_KEY = "f758ee6fa3842c83d1a4aae6b423d8c0"
     # DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
     DEBUG = True
-    # ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
-    ALLOWED_HOSTS = ["*"]
+    ALLOWED_HOSTS = [".apps.run-on-seenode.com"]
 
     # Database configuration
     DATABASES = {
