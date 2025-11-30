@@ -8,8 +8,8 @@ Changelog: dsd-<platformname>
 
 #### External changes
 
-- 
+- Worked once for a single project on macOS.
 
 #### Internal changes
 
-- 
+- N/A
