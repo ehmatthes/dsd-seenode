@@ -94,7 +94,7 @@ class PlatformDeployer:
         plugin_utils.add_file(path, contents)
 
         # Make script executable
-        pass
+        path.chmod(0o755)
 
 
     def _conclude_automate_all(self):
