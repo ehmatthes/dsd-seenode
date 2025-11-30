@@ -10,20 +10,6 @@ Add a new file to the user's project, without using a template:
         path = dsd_config.project_root / ".dockerignore"
         dockerignore_str = self._build_dockerignore()
         plugin_utils.add_file(path, dockerignore_str)
-
-Add a new file to the user's project, using a template:
-
-    def _add_dockerfile(self):
-        # Add a minimal dockerfile.
-        template_path = self.templates_path / "dockerfile_example"
-        context = {
-            "django_project_name": dsd_config.local_project_name,
-        }
-        contents = plugin_utils.get_template_string(template_path, context)
-
-        # Write file to project.
-        path = dsd_config.project_root / "Dockerfile"
-        plugin_utils.add_file(path, contents)
 """
 
 import sys, os, re, json
@@ -62,6 +48,8 @@ class PlatformDeployer:
 
         # Configure project for deployment to seenode
         self._add_requirements()
+        self._modify_settings()
+        self._add_build_script()
 
         self._conclude_automate_all()
         self._show_success_message()
@@ -93,6 +81,19 @@ class PlatformDeployer:
         # Add seenode-specific settings.
         template_path = self.templates_path / "settings.py"
         plugin_utils.modify_settings_file(template_path, context)
+
+    def _add_build_script(self):
+        # Add a minimal build script.
+        template_path = self.templates_path / "build.sh"
+        context = {}
+        contents = plugin_utils.get_template_string(template_path, context)
+
+        # Write file to project.
+        path = dsd_config.project_root / "build.sh"
+        plugin_utils.add_file(path, contents)
+
+        # Make script executable
+        pass
 
 
     def _conclude_automate_all(self):
