@@ -24,16 +24,6 @@ Add a new file to the user's project, using a template:
         # Write file to project.
         path = dsd_config.project_root / "Dockerfile"
         plugin_utils.add_file(path, contents)
-
-Modify user's settings file:
-
-    def _modify_settings(self):
-        # Add platformsh-specific settings.
-        template_path = self.templates_path / "settings.py"
-        context = {
-            "deployed_project_name": self._get_deployed_project_name(),
-        }
-        plugin_utils.modify_settings_file(template_path, context)
 """
 
 import sys, os, re, json
@@ -98,6 +88,11 @@ class PlatformDeployer:
         # Add requirements for deploying to seenode.
         requirements = ["gunicorn", "psycopg2-binary", "dj-database-url", "whitenoise"]
         plugin_utils.add_packages(requirements)
+
+    def _modify_settings(self):
+        # Add seenode-specific settings.
+        template_path = self.templates_path / "settings.py"
+        plugin_utils.modify_settings_file(template_path, context)
 
 
     def _conclude_automate_all(self):
