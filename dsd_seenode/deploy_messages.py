@@ -53,15 +53,36 @@ def success_msg(log_output=""):
         - Commit the changes made in the configuration process.
             $ git status
             $ git add .
-            $ git commit -am "Configured project for deployment."
-        - Push your project to seenode's servers:
-            $ ...
-        - Open your project:
-            $ ...    
+            $ git commit -am "Configured project for deployment to seenode."
+        - Push your project to a GitHub repository.
+        - Create a database:
+            - From your seenode dashboard, create a database.
+            - In the dashboard page for your database, go to the Connection tab,
+              and click URI in the dropdown. Copy the database URI; you'll need it in a moment.
+        - Create a web service:
+            - From your seenode dashboard, create a Web service.
+            - Connect the Web service to your project's GitHub repository.
+            - Set Build command to: ./build.sh
+            - Set Start command to: gunicorn <project-name>.wsgi --bind 0.0.0.0:80
+            - Set Port to: 80
+            - Add the following block to Environment variables.
+              ON_SEENODE=1
+              DEBUG=False
+              SECRET_KEY=<secret-key>
+              DATABASE_URL=<database-uri>
+            - Click Continue
+            - Choose a pricing tier, and click Start free trial, or Create instance.
+              Your project should start to deploy automatically.
+        - To open your project, go to Domains in your Web service dashboard,
+          and click under Default domain.
         - As you develop your project further:
             - Make local changes
-            - Commit your local changes
-            - Run `...` again to push your changes.
+            - Push changes to your project's GitHub repo.
+            - In the Web dashboard, click Deploy > Deploy specific commit. In the popup that appears,
+              make sure you wait to see the commit you just made before clicking Deploy.
+        
+        For a more thorough set of deployment instructions see:
+          https://github.com/ehmatthes/dsd-seenode
     """
     )
 
