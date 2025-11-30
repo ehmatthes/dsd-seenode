@@ -2,7 +2,7 @@
 
 # seenode settings.
 import os
-if os.environ.get("DATABASE_URL", ""):
+if os.environ.get("ON_SEENODE", ""):
     import dj_database_url
 
     # Security settings
