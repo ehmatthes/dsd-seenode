@@ -34,13 +34,6 @@ Modify user's settings file:
             "deployed_project_name": self._get_deployed_project_name(),
         }
         plugin_utils.modify_settings_file(template_path, context)
-
-Add a set of requirements:
-
-    def _add_requirements(self):
-        # Add requirements for deploying to Fly.io.
-        requirements = ["gunicorn", "psycopg2-binary", "dj-database-url", "whitenoise"]
-        plugin_utils.add_packages(requirements)
 """
 
 import sys, os, re, json
@@ -78,6 +71,7 @@ class PlatformDeployer:
         self._prep_automate_all()
 
         # Configure project for deployment to seenode
+        self._add_requirements()
 
         self._conclude_automate_all()
         self._show_success_message()
@@ -98,6 +92,12 @@ class PlatformDeployer:
     def _prep_automate_all(self):
         """Take any further actions needed if using automate_all."""
         pass
+
+
+    def _add_requirements(self):
+        # Add requirements for deploying to seenode.
+        requirements = ["gunicorn", "psycopg2-binary", "dj-database-url", "whitenoise"]
+        plugin_utils.add_packages(requirements)
 
 
     def _conclude_automate_all(self):
