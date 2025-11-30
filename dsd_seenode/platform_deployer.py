@@ -80,6 +80,7 @@ class PlatformDeployer:
     def _modify_settings(self):
         # Add seenode-specific settings.
         template_path = self.templates_path / "settings.py"
+        context = {}
         plugin_utils.modify_settings_file(template_path, context)
 
     def _add_build_script(self):
